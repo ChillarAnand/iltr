@@ -1,57 +1,72 @@
 import os
 
 
+ADMINS = (
+    ('anand', 'anand21nanda@gmail.com'),
+)
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-SECRET_KEY = '9e6u#5%(3k&vj#dk89_ho7f)^-k$1&h2v27kxc@q=vj%o&9!(o'
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
 
+STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# SECRET_KEY = os.environ.get('SECRET_KEY', None)
+SECRET_KEY = '6sd983****************LKSDF'
+
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get('DB_ENGINE', None),
+        'NAME': os.environ.get('DB_NAME', None),
+        'USER': os.environ.get('DB_USER', None),
+        'PASSWORD': os.environ.get('DB_PASSWORD', None),
+        'HOST': os.environ.get('DB_HOST', None),
+        'PORT': os.environ.get('DB_PORT', None)
+    }
+}
+
+# DEBUG = os.environ.get('DEBUG', False)
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+
+STATIC_URL = '/static/'
 
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.staticfiles',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.auth',
 
     'apps.books',
+    'django_extensions',
 )
 
+
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'iltr.urls'
 
 WSGI_APPLICATION = 'iltr.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -64,7 +79,9 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'
+# email settings
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'nandapk0@gmail.com'
+EMAIL_HOST_PASSWORD = 'f33lg00d'

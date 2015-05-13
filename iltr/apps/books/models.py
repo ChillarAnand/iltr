@@ -9,9 +9,13 @@ class Author(AuditModel):
     """
     List of all authors.
     """
-    first_name = models.CharField(max_length=255)
-    middle_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    full_name = models.CharField(max_length=255, blank=True)
+    first_name = models.CharField(max_length=255, blank=True)
+    middle_name = models.CharField(max_length=255, blank=True)
+    last_name = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.full_name
 
 
 class Language(AuditModel):
@@ -20,6 +24,9 @@ class Language(AuditModel):
     """
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
     
 
 class Book(AuditModel):
@@ -29,7 +36,9 @@ class Book(AuditModel):
     author = models.ForeignKey('Author')
     language = models.ForeignKey('Language')
     name = models.CharField(max_length=255)
-    published_date = models.DateField()
-    
-    
+    translated_name = models.CharField(max_length=255, blank=True)
+    published_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 

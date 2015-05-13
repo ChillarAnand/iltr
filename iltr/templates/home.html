@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block head_files %}
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block search %}
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div class="col-sm-5 col-md-5">
+      <form class="navbar-form" role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" autocomplete="off" name="search-query" id="search-query" autofocus="autofocus" />
+        </div>
+      </form>
+    </div>
+    
+  </div>
+
+{% endblock %}
+
+{% block content %}
+  <div id="results">
+    
+  </div>
+
+<script>
+$('#search-query').keyup(function() {
+
+  query = $('#search-query').val();
+  console.log(query);
+  ajax_url = "http://127.0.0.1:8000/autocomplete/" + query
+  url = "{% url autocomplete query %}";
+  console.log(url);
+  $.getJSON(ajax_url, function(data) {
+    $('#results').empty();
+    $.each(data, function(index, element) {
+        $('#results').append($('<div>', {
+            text: element
+        }));
+    });
+});
+
+ });
+</script>
+
+{% endblock %}
+
+
