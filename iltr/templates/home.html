@@ -32,10 +32,9 @@
 $('#search-query').keyup(function() {
 
   query = $('#search-query').val();
-  console.log(query);
+
   ajax_url = "http://127.0.0.1:8000/autocomplete/" + query
-  url = "{% url autocomplete query %}";
-  console.log(url);
+
   $.getJSON(ajax_url, function(data) {
     $('#results').empty();
     $.each(data, function(index, element) {
