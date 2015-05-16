@@ -1,9 +1,7 @@
 import os
 
+from .base import *  # noqa
 
-ADMINS = (
-    ('anand', 'anand21nanda@gmail.com'),
-)
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
