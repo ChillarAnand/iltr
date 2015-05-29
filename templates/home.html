@@ -38,19 +38,19 @@
   </div>
 
   <script>
-   $('#search-box').keyup(function() {
+    $('#search-box').keyup(function() {
 
-     query = $('#search-box').val();
-     if (query.length != 0) {
+    query = $('#search-box').val();
+    if (query.length != 0) {
 
-       var ac_url = "{% url 'autocomplete' 12345 %}".replace(/12345/, query);
+    var ac_url = "{% url 'autocomplete' 12345 %}".replace(/12345/, query);
 
-       //ajax_url = "http://127.0.0.1:8000/autocomplete/" + query
+    //ajax_url = "http://127.0.0.1:8000/autocomplete/" + query
 
-       $.getJSON(ac_url, function(data) {
-         $('#results').empty();
-         $.each(data, function(index, element) {
-           $('#results').append($('<div>', {
+    $.getJSON(ac_url, function(data) {
+    $('#results').empty();
+    $.each(data, function(index, element) {
+    $('#results').append($('<div --> -->>', {
              text: element
            }));
          });
