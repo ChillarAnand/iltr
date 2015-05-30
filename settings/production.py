@@ -27,7 +27,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'chillaranand$iltr',
         'USER': 'chillaranand',
-        'PASSWORD': '',
+        'PASSWORD': os.environ.get('DB_PASSWORD',  ''),
         'HOST': 'mysql.server',
         'PORT': ''
     }
@@ -84,4 +84,4 @@ EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'nandapk0@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')

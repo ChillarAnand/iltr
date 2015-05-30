@@ -7,8 +7,8 @@ ADMINS = (
     ('anand', 'anand21nanda@gmail.com'),
 )
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-print(BASE_DIR)
+BASE_DIR = os.path.dirname(__file__)
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
