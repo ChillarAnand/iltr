@@ -19,8 +19,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# SECRET_KEY = os.environ.get('SECRET_KEY', None)
-SECRET_KEY = '6sd98dda3*4ior******LKSDF'
+SECRET_KEY = os.environ.get('SECRET_KEY', None)
+
 
 DATABASES = {
     'default': {
