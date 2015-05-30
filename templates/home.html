@@ -43,14 +43,14 @@
     query = $('#search-box').val();
     if (query.length != 0) {
 
-    var ac_url = "{% url 'autocomplete' 12345 %}".replace(/12345/, query);
+    var ac_url = "{% url 'book_or_author' 12345 %}".replace(/12345/, query);
 
     //ajax_url = "http://127.0.0.1:8000/autocomplete/" + query
 
     $.getJSON(ac_url, function(data) {
     $('#results').empty();
     $.each(data, function(index, element) {
-    $('#results').append($('<div --> -->>', {
+    $('#results').append($('<div>', {
              text: element
            }));
          });

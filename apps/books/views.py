@@ -1,5 +1,6 @@
 import urllib
 
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -13,13 +14,20 @@ def home_view(request):
     return render(request, 'home.html')
 
 
-def autocomplete(request, query):
+def book_or_author(request, query):
     """
-    Auto complete function for mesh tissues, diseases.
+    Auto complete function for book, author names.
     """
     if query:
-        print(query)
         query = urllib.parse.unquote(query)
-        results = Book.objects.filter(name__icontains=query)[:10]
-        data = [i.name for i in results]
-        return JsonResponse(data, safe=False)
+        results = Book.objects.filter(
+            Q(name__icontains=query) |
+            Q(author__first_name__icontains=query) |
+            Q(author__middle_name__icontains=query) |
+            Q(author__last_name__icontains=query) 
+        )
+        data = [[i.name, str(i.author)] for i in results[:21]]
+        if data:
+            return JsonResponse(data, safe=False)
+
+

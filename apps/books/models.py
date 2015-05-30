@@ -9,13 +9,18 @@ class Author(AuditModel):
     """
     List of all authors.
     """
-    full_name = models.CharField(max_length=255, blank=True)
     first_name = models.CharField(max_length=255, blank=True)
     middle_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
-        return self.full_name
+        return self.first_name
+
+    def full_name(self):
+        """
+        Get full name of author.
+        """
+        return self.first_name + self.middle_name + self.last_name
 
 
 class Language(AuditModel):
@@ -27,7 +32,7 @@ class Language(AuditModel):
 
     def __str__(self):
         return self.name
-    
+
 
 class Book(AuditModel):
     """
@@ -41,4 +46,3 @@ class Book(AuditModel):
 
     def __str__(self):
         return self.name
-
